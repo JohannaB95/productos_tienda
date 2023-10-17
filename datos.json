@@ -1,0 +1,44 @@
+[
+  {
+    "codigoProducto": "01",
+    "nombreProducto": "Pantalón",
+    "inventarioProducto": 7,
+    "precioProducto": 55000
+  },
+  {
+    "codigoProducto": "02",
+    "nombreProducto": "Camisa  ",
+    "inventarioProducto": 15,
+    "precioProducto": 35000
+  },
+  {
+    "codigoProducto": "03",
+    "nombreProducto": "Medias  ",
+    "inventarioProducto": 19,
+    "precioProducto": 10000
+  },
+  {
+    "codigoProducto": "04",
+    "nombreProducto": "Chaqueta",
+    "inventarioProducto": 3,
+    "precioProducto": 65000
+  },
+  {
+    "codigoProducto": "05",
+    "nombreProducto": "Zapatos ",
+    "inventarioProducto": 17,
+    "precioProducto": 75000
+  },
+  {
+    "codigoProducto": "06",
+    "nombreProducto": "Tenis   ",
+    "inventarioProducto": 11,
+    "precioProducto": 60000
+  },
+  {
+    "codigoProducto": "07",
+    "nombreProducto": "Celular ",
+    "inventarioProducto": 14,
+    "precioProducto": 450000
+  }
+]

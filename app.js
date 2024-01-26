@@ -5,7 +5,7 @@ require('colors');
 const fs = require('fs');
 
 /*Se cargan los datos del archivo datos.json en la variable datosArchivo. Esto es posible debido al uso de require,
- que puede cargar archivos JSON en Node.js.*/
+que puede cargar archivos JSON en Node.js.*/
 const datosArchivo = require('./datos.json');
 
 //Se declara una función flecha llamada main y que es asíncrona
@@ -28,15 +28,15 @@ const main = async () => {
         #inventarioProducto;
         #precioProducto;
 
-        // Se llama al constructor que inicializa los atributos de la clase, se ejecuta al crear una nueva instancia de Producto
+        //Se llama al constructor que inicializa los atributos de la clase, se ejecuta al crear una nueva instancia de Producto
         constructor() {
-            // Se inicializa el código del producto como un string vacio
+            // Se inicializa el código del producto con un string vacio
             this.#codigoProducto = ' ';
-            // Se inicializa el nombre del producto como un string vacio
+            // Se inicializa el nombre del producto con un string vacio
             this.#nombreProducto = ' ';
-            // Se inicializa la cantidad del inventario del producto como 0
+            // Se inicializa la cantidad del inventario del producto en 0
             this.#inventarioProducto = 0;
-            //Se inicializa el precio del producto como 0
+            //Se inicializa el precio del producto en 0
             this.#precioProducto = 0;
         }
 
@@ -88,7 +88,7 @@ const main = async () => {
         // Se declara un atributo privado llamado listaProductos
         #listaProductos;
 
-        // Constructor que inicializa el atributo #listaProductos como un arreglo vacío
+        // Constructor que inicializa el atributo #listaProductos con un arreglo vacío
         constructor() {
             this.#listaProductos = [];
         }
@@ -99,20 +99,20 @@ const main = async () => {
         }
 
         /*Leer los datos del archivo Json
-    Serializar para trabajar los datos como un arreglo de objetos de clase Producto*/
+        Serializar para trabajar los datos como un arreglo de objetos de clase Producto*/
         //Se crea un método llamado cargarArchivoProductos sin parámetros
         cargarArchivoProductos() {
 
             //Se crea una variable llamada contador que se inicia en 0
             let contador = 0;
 
-            //Se utiliza un if para verificar si existe algún dato en el archivo datosArchivo
+            //Se declara un if para verificar si existe algún dato en el archivo datosArchivo
             if (datosArchivo.length > 0) {
                 // Se utiliza un forEach para iterar cada elemento que se encuentre en el archivo
                 /*El parámetro objeto dentro de la función flecha en el forEach representa cada elemento individual 
                 en el arreglo datosArchivo a medida que se itera.*/
                 datosArchivo.forEach(objeto => {
-                    //El contador aumentara cada vez +1
+                    //El contador aumentara cada vez en +1
                     contador++;
 
                     // Se crea una nueva instancia de la clase Producto
@@ -154,9 +154,8 @@ const main = async () => {
 
             // Convierte objetos de clase a objetos de JavaScript
             //Se crea un nuevo arreglo
-            /*Es una función de flecha que toma un argumento producto. La función devuelve un objeto que se 
-            asigna a la variable instanciaClaseAObjetos. El objeto devuelto contiene una propiedad con el nombre 
-            de la clave producto. */
+            /*Se declara una constante llamada instanciaClaseAObjetos que, mediante el uso de la función map,
+            crea y almacena un nuevo arreglo con elementos obtenidos de getListaProductos.*/
             const instanciaClaseAObjetos = this.getListaProductos.map(producto => {
                 return {
                     /*Asigna el valor de la propiedad codigoProducto del objeto producto a la clave codigoProducto 
@@ -176,12 +175,13 @@ const main = async () => {
 
             // Se utiliza JSON.stringify para convertir los objetos de JavaScript en una cadena de texto JSON
             const cadenaJson = JSON.stringify(instanciaClaseAObjetos, null, 2);
-            //Se declara una variable que va a almacenar el archivo en el que se va a guardar la información
+            /*Se declara una constante llamada nombreArchivo que va a almacenar el archivo en el que se van a 
+            guardar los datos*/
             const nombreArchivo = 'datos.json';
 
-            /*Se utiliza para escribir datos en un archivo de manera sincrónica. El nombre del archivo en el que 
-        se escribirán los datos. La cadena de texto JSON que se va a escribir en el archivo. La codificación 
-        de caracteres que se utilizará al escribir el archivo.*/
+            /*fs.writeFileSync se utiliza para escribir datos en un archivo de manera sincrónica. Se tienen 3 elementos:
+            El nombre del archivo en el que se escribirán los datos, la cadena de texto JSON que se va a escribir 
+            en el archivo y la codificación de caracteres que se utilizará al escribir el archivo.*/
             fs.writeFileSync(nombreArchivo, cadenaJson, 'UTF-8');
 
             //Se imprime un mensaje en la consola indicando que los datos se han guardado en el archivo datos.json
@@ -193,8 +193,9 @@ const main = async () => {
         //Se crea un método llamado mostrarProductos sin parámetros
         mostrarProductos() {
 
-            /*Itera sobre cada producto en la lista y se obtienen los valores de cada uno de los atributos, luego se imprime 
-             la información en la consola siguiendo el orden en el que se están especificando*/
+            /*Se itera sobre cada producto en la lista de productos a través del forEach y se obtienen los valores 
+            de cada uno de los atributos, luego se imprime la información en la consola siguiendo el orden en el 
+            que se están especificando*/
             this.getListaProductos.forEach(producto => {
                 console.log(`­♦    `.yellow + producto.getCodigoProducto + `     ­♦   `.yellow
                     + producto.getNombreProducto + `      ­♦   `.yellow +
@@ -207,7 +208,8 @@ const main = async () => {
     // Se crea una nueva instancia de la clase ProductosTienda
     let productosTienda = new ProductosTienda;
 
-    //Se llama a la función cargarArchivoProductos de la clase productosTienda para cargar los datos de productos desde un archivo. 
+    /*Se llama a la función cargarArchivoProductos de la clase productosTienda para cargar los datos de 
+    productos desde un archivo.*/
     productosTienda.cargarArchivoProductos();
 
     //Se imprime en la consola un mensaje con interfaz y colores
@@ -215,7 +217,8 @@ const main = async () => {
     console.log(`♦  `.green + `Datos Apertura Tienda`.bgGreen + `  ♦`.green);
     console.log(`♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦\n`.green);
 
-    //Se llama a la función mostrarProductos de la clase productosTienda para mostrar en la consola la lista de productos junto con sus detalles.
+    /*Se llama a la función mostrarProductos de la clase productosTienda para mostrar en la consola la lista de 
+    productos junto con sus detalles.*/
     productosTienda.mostrarProductos();
 
     /*Se itera sobre la lista de productos usando productosTienda.getListaProductos.forEach(...).
@@ -231,10 +234,12 @@ const main = async () => {
     console.log(`♦  `.magenta + `Datos Cierre Tienda`.bgMagenta + `  ♦`.magenta);
     console.log(`♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦\n`.magenta);
 
-    //Se llama a la función mostrarProductos de la clase productosTienda para mostrar en la consola la lista de productos junto con sus detalles.
+    /*Se llama a la función mostrarProductos de la clase productosTienda para mostrar en la consola la lista de 
+    productos junto con sus detalles.*/
     productosTienda.mostrarProductos();
 
-    //Se llama a la función grabaArchivoProductos de la clase productosTienda para guardar los datos actualizados de productos en un archivo.
+    /*Se llama a la función grabaArchivoProductos de la clase productosTienda para guardar los datos actualizados
+     de productos en un archivo.*/
     productosTienda.grabaArchivoProductos();
 }
 
